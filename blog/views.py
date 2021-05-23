@@ -9,7 +9,7 @@ from django.views.generic import ListView
 class PostListView(ListView):
     queryset = Post.objects.all()
     context_object_name = 'posts'
-    paginate_by = 1
+    paginate_by = 3
     template_name = 'blog/post/list.html'
 
 
