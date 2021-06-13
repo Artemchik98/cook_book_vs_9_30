@@ -1,0 +1,51 @@
+{% extends 'blog/base.html' %}
+{% block title %}
+    Поделиться рецептом
+{% endblock %}
+{% block content %}
+    <div class="container">
+        {% if sent %}
+            <h1>
+                {{ post.title }} успешно отправлен через
+                E-mail пользователю {{form.cleaned_data.to }}
+            </h1>
+        {% else %}
+            <h1>Для отправки{{ post.title }}
+                заполните поля
+            </h1>
+            <form action="." method="post">
+
+                <div class="form-group">
+                    <label for="nameInput">
+                        Имя
+                    </label>
+                    {{ form.name }}
+                </div>
+                <div class="form-group">
+                    <label for="InputEmail">
+                        Ваш Email
+                    </label>
+                    {{ form.email }}
+                    <small id="emailHelp"
+                       class="form-text text-muted">
+                        Мы не разглашаем данные наших пользователей
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="EmailTo">
+                        E-mail Получателя
+                    </label>
+                    {{ form.to }}
+                </div>
+                <div class="form-group">
+                    <label for="comment">Комментарий</label>
+                    {{ form.comment }}
+                </div>
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">
+                    Отправить
+                </button>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

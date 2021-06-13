@@ -122,3 +122,10 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'artem.svistelnik@student.sumdu.edu.ua'
+EMAIL_HOST_PASSWORD = 'v19551955student'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+

@@ -52,3 +52,26 @@ class PostPoint(models.Model):
     def __str__(self):
         return 'Пункт поста {}'.format(self.post.title)
 
+
+class Comment(models.Model):
+    post=models.ForeignKey(Post,
+                   on_delete=models.CASCADE,
+                   related_name='comments')
+    name=models.CharField(max_length=80)
+    email=models.EmailField()
+    body=models.TextField()
+    created = models.DateTimeField(auto_now_add=True,
+                   verbose_name='Дата создания')
+    updated = models.DateTimeField(auto_now=True,
+               verbose_name='Дата изменения')
+    active=models.BooleanField(default=True)
+
+    class Meta:
+        ordering=('created',)
+        verbose_name='Комментарий'
+        verbose_name_plural='Комментарии'
+
+    def __str__(self):
+        return f'Комментарий написан {self.name}' \
+               f' о {self.post.title}'
+
