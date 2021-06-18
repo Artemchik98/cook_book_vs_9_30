@@ -4,6 +4,8 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from taggit.managers import TaggableManager
+
 
 class Post(models.Model):
     STATUS_CHOICES=(
@@ -20,6 +22,8 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft', verbose_name='Статус публикации')
     image = models.ImageField(upload_to='product_images/', blank=False, verbose_name='Изображение')
+    tags=TaggableManager()
+
 
     class Meta:
         ordering = ('-publish',)

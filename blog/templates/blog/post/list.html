@@ -12,32 +12,35 @@
                 <div class="col">
                     <div class="card ">
                         <a href="{{ post.get_absolute_url }}">
-                            <img src="{{MEDIA_URL}}{{ post.image.url }}" class="card-img-top" alt="...">
+                            <img src="{{ MEDIA_URL }}{{ post.image.url }}" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
-                        <a href="{{ post.get_absolute_url }}">
-                            <h5 class="card-title">{{ post.title }}</h5>
-                        </a>
-                        <p class="card-text">{{post.short_description}}</p>
-                      </div>
-                      <div class="card-footer">
-                        <small class="text-muted">
-                            Опубликовано {{ post.publish }}
-                        </small>
-                          <br>
-                        <small class="text-muted">
-                            Автор {{ post.author }}
-                        </small>
-                      </div>
+                            <a href="{{ post.get_absolute_url }}">
+                                <h5 class="card-title">{{ post.title }}</h5>
+                            </a>
+                            <p class="card-text">{{ post.short_description }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">
+                                Опубликовано {{ post.publish }}
+                            </small>
+                            <br>
+                            <small class="text-muted">
+                                Автор {{ post.author }}
+                            </small>
+                            <p class="tags">Теги:
+                                {{post.tags.all  }}
+                            </p>
+                        </div>
                     </div>
-            </div>
-        {% endfor %}
+                </div>
+            {% endfor %}
         </div>
     </div>
 
 
 
 
-{#    {% include "pagination.html" with page=posts %}#}
+    {#    {% include "pagination.html" with page=posts %}#}
     {% include "pagination.html" with page=page_obj %}
 {% endblock %}

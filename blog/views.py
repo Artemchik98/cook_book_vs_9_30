@@ -5,7 +5,7 @@ from django.views.generic import ListView
 
 from .forms import EmailPostForm, CommentForm
 # Create your views here.
-from .models import Post, PostPoint
+from .models import Post, PostPoint,Comment
 
 
 class PostListView(ListView):
@@ -48,9 +48,11 @@ def post_detail(request, year, month, day, slug):
         comment_form = CommentForm(
             data=request.POST)
         if comment_form.is_valid():
-            new_comment = comment_form.save(
-                commit=False)
-            new_comment.post = post_object
+            cd=comment_form.cleaned_data
+            new_comment=Comment(post=post_object,
+                    name=cd['name'],
+                    email=cd['email'],
+                    body=cd['comment'])
             new_comment.save()
     else:
         comment_form = CommentForm()
