@@ -43,6 +43,19 @@
             </small>
           </div>
         </div>
+
+    <h2>Похожие посты</h2>
+    {% for post in similar_posts %}
+        <p>
+            <a href="{{ post.get_absolute_url }}">
+                {{ post.title }}
+            </a>
+        </p>
+    {% empty %}
+        Рекомендованых постов ещё нет
+    {% endfor %}
+
+
     {% with comments.count as total_comments %}
         <h2 class="text-center">
             {{ total_comments }} Комментариев
